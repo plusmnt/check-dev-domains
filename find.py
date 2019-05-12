@@ -2,7 +2,7 @@ import requests
 import json
 from itertools import product
 from string import ascii_lowercase
-import progressbar
+#import progressbar
 import pyexcel
 #setting
 api_url = 'https://domain-registry.appspot.com/check?domain='
@@ -16,16 +16,17 @@ gen_domain=map(''.join, product(ascii_lowercase, repeat=domain_length))
 domain_list =list(gen_domain)
 #domain_name = "abc"
 result_list=[]
-progressbar.streams.wrap_stderr()
+#progressbar.streams.wrap_stderr()
 #functions
 def is_available(a):
 	if a is True:
 		return "Available"
 	else:
 		return "Not available"
+#def find_domain(domain):
 
 
-for domain in progressbar.progressbar(domain_list, redirect_stdout=True):
+for domain in domain_list: #progressbar.progressbar(domain_list, redirect_stdout=True):
 	request_url = api_url+domain+domain_ltd
 	response = requests.get(request_url)
 	json_data = json.loads(response.content)
